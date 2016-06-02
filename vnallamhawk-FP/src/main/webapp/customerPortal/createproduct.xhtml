@@ -1,0 +1,57 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                template="./../WEB-INF/portalTemplate.xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:p="http://xmlns.jcp.org/jsf/passthrough"
+                xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+                xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:define name="title">
+        Create New Product
+    </ui:define>
+
+    <ui:define name="body">
+        <h:form>
+            <div class="row">
+                <div class="large-12 columns">
+                    <h:outputLabel for="id" value="Product Id #{productBean.product.id}" rendered="#{not empty productBean.product.id}" />
+                    <h:inputHidden id="id" value="#{productBean.product.id}" />
+                </div>
+            </div>
+            <div class="row">
+                <div class="large-12 columns">
+                    <h:outputLabel for="name" value="Name" />
+                    <h:inputText p:placeholder="Name" id="Name" value="#{productBean.product.name}" />
+                </div>
+            </div>
+            
+             <div class="row">
+                <div class="large-12 columns">
+                    <h:outputLabel for="description" value="Description" />
+                    <h:inputText p:placeholder="Description" id="description" value="#{productBean.product.description}" />
+                </div>
+            </div>
+            
+            
+            
+          
+            
+            <div class="row">
+                <div class="large-12 columns">
+                    <h:outputLabel for="price" value="Price" />
+                    <h:inputText p:placeholder="Price" id="price" value="#{productBean.product.price}" />
+                </div>
+            </div>
+            
+            
+                <div class="row">
+                <div class="large-12 columns">
+                    <h:commandButton action="#{productBean.productCreate()}" class="button expand" value="Create New Product"/>
+                </div>
+            </div>
+        </h:form>
+    </ui:define>
+
+</ui:composition>

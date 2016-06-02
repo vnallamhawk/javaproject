@@ -1,0 +1,82 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                template="/WEB-INF/portalTemplate.xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:p="http://xmlns.jcp.org/jsf/passthrough"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:ezcomp="http://xmlns.jcp.org/jsf/composite/ezcomp">
+
+    <ui:define name="title">
+        Store Manager Welcome Page
+    </ui:define>
+
+    <ui:define name="body">
+        
+          <h2>Store Portal</h2>
+            
+          <h:dataTable value="#{storeCreationBean}">
+           
+	<h:column>
+        <f:facet name="header">
+            <h:outputText value="Store Name" />
+        </f:facet>
+            <h:outputText value="#{storeCreationBean.store.name}" />
+        </h:column>	
+              
+              <h:column>
+        <f:facet name="header">
+            <h:outputText value="Location" />
+        </f:facet>
+                  <h:outputText value="#{storeCreationBean.store.location}" />
+        </h:column>	  
+              
+              <h:column>
+        <f:facet name="header">
+            <h:outputText value="Address" />
+        </f:facet>
+        <h:outputText value="#{storeCreationBean.store.address}" />
+        </h:column>	  
+              
+               <h:column>
+        <f:facet name="header">
+            <h:outputText value="Phone Number" />
+        </f:facet>
+                  <h:outputText value="#{storeCreationBean.store.phoneNumber}" />
+        </h:column>	  
+              
+              <h:column>
+        <f:facet name="header">
+            <h:outputText value="Pincode" />
+        </f:facet>
+                  <h:outputText value="#{storeCreationBean.store.pincode}" />
+        </h:column>	  
+              
+               <h:column>
+                  <h:link outcome="createstore.xhtml" value="Update Store" />
+               </h:column>
+              
+               <h:column>
+                <h:form> <h:commandLink action="#{storeCreationBean.doDelete(store)}" value="Delete"/></h:form>
+            </h:column>
+              
+             
+               
+       
+       
+       </h:dataTable>
+          
+          
+          
+          <h:link outcome="createstoremanager.xhtml" value="Create New StoreManager" />
+          <div class="columns large-6">
+              <ezcomp:storemanager storemanager="#{storeManagerService.findByUsername(loginBean.remoteUser)}" readonly="true"/>
+          </div>
+          
+          <div class="columns large-6">
+              <ezcomp:storemanager storemanager="#{storeBean.storeManager}" readonly="false" action="#{storeBean.update()}"/>
+          </div>
+    </ui:define>
+
+</ui:composition>

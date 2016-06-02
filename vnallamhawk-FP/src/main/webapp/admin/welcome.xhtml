@@ -1,0 +1,54 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                template="/WEB-INF/portalTemplate.xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:p="http://xmlns.jcp.org/jsf/passthrough"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:ezcomp="http://xmlns.jcp.org/jsf/composite/ezcomp">
+
+    <ui:define name="title">
+        Admin's Portal Page
+    </ui:define>
+
+    <ui:define name="body">
+        <h2>Store Managers Details</h2>
+        <h:dataTable value="#{storeManagerService.findAll()}" var="sm">
+            <h:column>
+                <f:facet name="header"><h:outputText value="ID"/></f:facet>
+                <h:outputText value="#{sm.id}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header"><h:outputText value="Name"/></f:facet>
+                <h:outputText value="#{sm.firstName}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header"><h:outputText value="Location"/></f:facet>
+                <h:outputText value="#{sm.location}">
+                </h:outputText>
+            </h:column>
+             <h:column>
+                <f:facet name="header"><h:outputText value="Store Name"/></f:facet>
+                <h:outputText value="#{sm.store.name}">
+                </h:outputText>
+            </h:column>
+        </h:dataTable>
+        
+
+        <h2>Inventory Details</h2>
+          <div class="columns large-6">
+              <ezcomp:inventory inventory="#{inventoryService.findAll()}" />
+          </div>
+        
+        
+        
+        <h2>Customer Details</h2>
+          <div class="columns large-6">
+              <ezcomp:customers customer="#{customerService.findAll()}" />
+          </div>
+        
+        
+         </ui:define>
+        
+</ui:composition>
